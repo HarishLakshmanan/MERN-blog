@@ -45,10 +45,13 @@ export const signin =async(req,res,next)=>{
            return next(errorHandler(400,'Invalid password'))
         }
         const token = jwt.sign({id:validUser._id},"86e7b1c268a68fa890f9614a084e5cbbd1aa780dbe6676221a2d5e4f4beaff15");
+         
+        const{password:pass, ...rest}= validUser._doc;
+
         res.status(200).cookie('access_token',token,{
             httpOnly:true,
         })
-        .json(validUser);
+        .json(rest);
     } catch (error) {
         next(error)
     }
