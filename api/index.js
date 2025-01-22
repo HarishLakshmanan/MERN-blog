@@ -2,7 +2,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import 'dotenv/config';
 import userRoute from './routes/userRoute.js';
-import authRoute from './routes/authRoute.js'
+import authRoute from './routes/authRoute.js';
+import cookieParser from 'cookie-parser';
 
 
 
@@ -16,7 +17,8 @@ mongoose.connect('mongodb+srv://harish99427:UZcAv7X1rZbgqK3g@blog.efv9a.mongodb.
 
 
 const app = express();
-app.use(express.json())
+app.use(express.json());
+app.use(cookieParser());
 
 
 app.listen(3000,()=>{
