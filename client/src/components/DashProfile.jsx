@@ -6,13 +6,15 @@ import 'react-circular-progressbar/dist/styles.css';
 import {deleteUserFailure,deleteUserStart,deleteUserSuccess,signoutSuccess} from '../redux/user/userSlice'
 import { use } from 'react';
 import {HiOutlineExclamationCircle} from 'react-icons/hi';
+import {Link} from 'react-router-dom'
 
 
 export default function DashProfile() {
-    const {currentUser,/*error skiped session*/} = useSelector(state =>state.user);
+    const {currentUser,/*error skiped session*/loading} = useSelector(state =>state.user);
     const [imageFile,setImageFile] = useState(null);
     const [imageFileUrl,setImageFileUrl]= useState(null);
     const [imageFileUploadeProgress,setImageFileUploadeProgress]=useState(null)
+    const [imageFileUploading,setImageFileUploading] = useState(false)
     const [formData,setFormData]=useState({})
     const [showModal,setShowModal]=useState(false)
     const filePickerRef=useRef();
@@ -95,9 +97,18 @@ export default function DashProfile() {
         <TextInput type='text' id='username' placeholder='username' defaultValue={currentUser.username}/>
         <TextInput type='email' id='email' placeholder='email' defaultValue={currentUser.email}/>
         <TextInput type='password' id='password' placeholder='password'/>
-        <Button type='submit' gradientDuoTone='purpleToBlue' outline>
-           Update
+        <Button type='submit' gradientDuoTone='purpleToBlue' outline disabled={loading || imageFileUploading}>
+           {loading ? 'Loading...':'Update'}
         </Button>
+        {
+          currentUser.isAdmin && (
+            <Link to={'/create-post'}>
+              <Button type='button' gradientDuoTone='purpleToPink' className='w-full'>
+                Create a post
+              </Button>
+            </Link>
+          )
+        }
       </form>
       <div className='text-red-500 flex justify-between mt-5'>
         <span onClick={()=>setShowModal(true)} className='cursor-pointer'>Delete Account</span>
