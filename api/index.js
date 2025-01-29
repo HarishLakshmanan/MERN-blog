@@ -8,7 +8,7 @@ import cookieParser from 'cookie-parser';
 
 
 
-mongoose.connect('mongodb+srv://harish99427:UZcAv7X1rZbgqK3g@blog.efv9a.mongodb.net/?retryWrites=true&w=majority&appName=BloG')
+mongoose.connect(process.env.MONGODB)
   .then(() => {
     console.log('MongoDb is connected');
   })
