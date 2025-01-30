@@ -1,8 +1,9 @@
-import { Button, Spinner , } from 'flowbite-react';
+import { Button, Spinner  } from 'flowbite-react';
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import CallToAction from '../components/CallToAction';
+import CommentSection from '../components/CommentSection';
 
 
 export default function PostPage() {
@@ -31,14 +32,15 @@ export default function PostPage() {
                 setError(true);
                 setLoading(false);
             }
-        }
+        };
+        fetchPost();
     },[postSlug]);
 
-    // if (loading) return (
-    //     <div className='flex justify-center items-center min-h-screen'>
-    //         <Spinner size='xl'/>
-    //     </div>
-    // )
+    if (loading) return (
+        <div className='flex justify-center items-center min-h-screen'>
+            <Spinner size='xl'/>
+        </div>
+    )
 
 
   return (
@@ -63,6 +65,7 @@ export default function PostPage() {
      <div className='max-w-4xl mx-auto w-full'>
         <CallToAction/>
      </div>
+     <CommentSection postId={post._id}/>
    </main>
   )
 }

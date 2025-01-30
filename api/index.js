@@ -3,7 +3,8 @@ import mongoose from 'mongoose';
 import 'dotenv/config';
 import userRoute from './routes/userRoute.js';
 import authRoute from './routes/authRoute.js';
-import postRoute from './routes/postRoute.js'
+import postRoute from './routes/postRoute.js';
+import commentRoute from './routes/commentRoute.js';
 import cookieParser from 'cookie-parser';
 
 
@@ -29,7 +30,7 @@ app.listen(3000,()=>{
 app.use('/api/user',userRoute);
 app.use('/api/auth',authRoute);
 app.use('/api/post',postRoute);
-
+app.use('/api/comment',commentRoute);
 
 app.use((err,req,res,next)=>{
   const statusCode = err.statusCode || 500;
