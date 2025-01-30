@@ -63,9 +63,6 @@ export default function CommentSection({postId}) {
                 <Button outline gradientDuoTone='purpleToBlue'type='submit'>
                     Submit
                 </Button>
-                <Alert color='failure' className='mt-5'>
-                  {commentError}
-                </Alert>
             </div>
             {commentError && (
               <Alert color='failure' className='mt-5'>
