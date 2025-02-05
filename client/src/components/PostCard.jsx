@@ -3,7 +3,7 @@
  
  export default function PostCard({post}) {
    return (
-     <div className='group relative w-full border border-teal-500
+     <div className='group relative w-full border border-teal-500 rounded-b-lg rounded-t-lg
      hover:border-2  h-[360px] overflow-hidden
      router-lg sm:w-[340px]'>
        <Link to={`/post/${post.slug}`}>
