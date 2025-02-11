@@ -99,4 +99,5 @@ export const updatepost = async (req,res,next) => {
     } catch (error) {
         next(error);
     }
+    
 }
