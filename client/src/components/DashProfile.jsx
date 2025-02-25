@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import {deleteUserFailure,deleteUserStart,deleteUserSuccess,signoutSuccess} from '../redux/user/userSlice'
-import { use } from 'react';
 import {HiOutlineExclamationCircle} from 'react-icons/hi';
 import {Link} from 'react-router-dom'
 
@@ -14,9 +13,11 @@ export default function DashProfile() {
     const [imageFile,setImageFile] = useState(null);
     const [imageFileUrl,setImageFileUrl]= useState(null);
     const [imageFileUploadeProgress,setImageFileUploadeProgress]=useState(null)
+    const [imageFileUploadError,setImageFileUploadError] = useState(null)
     const [imageFileUploading,setImageFileUploading] = useState(false)
     const [formData,setFormData]=useState({})
     const [showModal,setShowModal]=useState(false)
+    console.log(imageFileUploadeProgress,imageFileUploadError)
     const filePickerRef=useRef();
     const dispatch = useDispatch();
     const handleImageChange = (e)=>{
@@ -32,8 +33,22 @@ export default function DashProfile() {
       }
     },[imageFile]);
     const uploadImage=async () =>{
-      console.log('uploading image...')
-    }
+        const image = new FormData()
+        image.append("file", Image)
+        image.append("cloud_name", 'dzfcldskh')
+        image.append("upload_preset",'ml_default')
+
+        const responce = await fetch('https://api.cloudinary.com/v1_1/dzfcldskh/image/upload',
+          {
+            method:"post",
+            body:image
+          }
+        )
+        .then(res=>res.json())
+        .then(async image =>{
+          console.log(image)
+        })
+      }
     const handleDeleteUser=async()=>{
       setShowModal(false);
       try {

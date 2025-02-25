@@ -5,6 +5,7 @@ import{BsFacebook,BsInstagram,BsTwitterX,BsGithub,BsLinkedin} from 'react-icons/
 
 export default function Footerom() {
   return (
+    <div>
     <Footer container className='border border-t-8 border-test-500'>
         <div className='w-full max-w-7xl mx-auto'>
             <div className='grid w-full justify-between sm:flex md:grid-col-1'>
@@ -92,5 +93,7 @@ export default function Footerom() {
             </div>
         </div>
     </Footer>
+    </div>
+    
   )
 }

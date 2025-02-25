@@ -122,7 +122,7 @@ export default function CommentSection({postId}) {
       (
         <div className='text-sm text-teal-500 my-5 flex gap-1'>
             You must be signed in to comment.
-            <Link to={'/sign-in'}>
+            <Link className='text-blue-500 hover:underline' to={'/sign-in'}>
             Sing In
             </Link>
         </div>
@@ -157,7 +157,7 @@ export default function CommentSection({postId}) {
          </div>
         </div>
         {
-          comments.map(comment =>(
+          comments.map((comment) =>(
             <Comment 
             key={comment._id} 
             comment={comment} 

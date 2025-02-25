@@ -11,7 +11,7 @@ export const signup=async(req,res,next)=>{
         next(errorHandler(400,'All are required'));
     }
 
-    const hashedPassword= bcryptjs.hashSync(password,10);
+    const hashedPassword= process.env.HASH
 
     const newUser = new User({
         username,
@@ -78,7 +78,7 @@ export const google=async(req,res,next)=>{
         profilePicture:googlePhotoUrl,
      });
      await newUser.save();
-     const token = jwt.sign({id:newUser._id,isAdmin:newUser.isAdmin},process.env.JWT_SECRET);
+     const token = jwt.sign({id:newUser._id,isAdmin:newUser.isAdmin},process.env.JWT_SECRET,{ expiresIn: '15m' });
      const {password,...rest} = newUser._doc;
      res.status.cookie('access_token',token,{
         httpOnly:true,
