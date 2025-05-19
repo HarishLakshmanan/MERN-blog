@@ -8,7 +8,7 @@ function Home() {
 
   useEffect(()=>{
     const fetchPosts = async () =>{
-      const res = await fetch('api/post/getposts');
+      const res = await fetch(`${__API_BASE__}/post/getposts`);
       const data = await res.json();
       setPosts(data.posts);
     }

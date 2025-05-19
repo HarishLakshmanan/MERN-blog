@@ -34,7 +34,7 @@ export default function Search() {
        const fetchPosts = async() =>{
         setLoading(true);
         const searchQuary = urlParams.toString();
-        const res = await fetch(`/api/post/getposts?${searchQuary}`);
+        const res = await fetch(`${__API_BASE__}/post/getposts?${searchQuary}`);
         if(!res.ok){
             setLoading(false);
             return;
@@ -85,7 +85,7 @@ export default function Search() {
         const urlParams = new URLSearchParams(location.search);
         urlParams.set('startIndex',startIndex);
         const searchQuary = urlParams.toString();
-        const res = await fetch(`/api/post/getposts?${searchQuary}`);
+        const res = await fetch(`/${__API_BASE__}/post/getposts?${searchQuary}`);
         if(!res.ok){
             return;
         }
