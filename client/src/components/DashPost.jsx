@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import {useSelector} from 'react-redux'
 import { Link } from 'react-router-dom'
-import { set } from 'mongoose';
 
 export default function DashPost() {
    
