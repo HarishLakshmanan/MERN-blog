@@ -2,7 +2,6 @@ import { Modal, Table ,Button} from 'flowbite-react'
 import React, { useEffect, useState } from 'react'
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import {useSelector} from 'react-redux'
-import {FaCheck,FaTimes} from 'react-icons/fa'
 
 export default function DashComments() {
    
