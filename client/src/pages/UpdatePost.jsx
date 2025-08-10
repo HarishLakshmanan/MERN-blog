@@ -87,7 +87,7 @@ export default function UpdatePost() {
       body:JSON.stringify(formData),
     });
     const data =await res.json();
-    if(!res.ok){
+    if(res.ok){
       setPublishError(null);
       navigate(`/post/${data.slug}`);
     }

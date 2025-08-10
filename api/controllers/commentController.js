@@ -25,7 +25,7 @@ export const createComment = async (req,res,next) =>{
 
 export const postComments = async(req,res,next)=>{
     try {
-        const comments = await Comment.find({postId: req.params.PostId}).sort({
+        const comments = await Comment.find({postId: req.params.postId}).sort({
             createdAt:-1,
         });
         res.status(200).json(comments);
@@ -37,7 +37,7 @@ export const postComments = async(req,res,next)=>{
 
 export const likeComment = async (req,res,next) =>{
     try {
-         const comment = await Comment.findById(req.pharms.commentId);
+         const comment = await Comment.findById(req.parms.commentId);
          if(!comment){
             return next(errorHandler(404,'Comment not found'))
          } 
@@ -65,7 +65,7 @@ export const editComment =async (req,res,next)=>{
             return next(errorHandler(404,'Comment not found'));
 
         }
-        if(comment.userId !== req.user.id && !res.user.isAdmin){
+        if(comment.userId !== req.user.id && !req.user.isAdmin){
           return next(errorHandler(403,'You are not allowed to edit this comment'))  
         }
 
@@ -88,7 +88,7 @@ export const deleteComment = async (req,res,next)=>{
         if(!comment){
            return next(errorHandler(404,'Comment not found'))
         }
-        if (comment.userId !== req.user.id && !res.user.isAdmin){
+        if (comment.userId !== req.user.id && !req.user.isAdmin){
             return next(errorHandler(403,'You are not allowed to delete this comment'))
         }
         await Comment.findByIdAndDelete(req.params.commentId);
